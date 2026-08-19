@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Tema CSS Değişkenleri ─────────────────────────────────────────────── */
+
+:root {
+  /* DARK (varsayılan) */
+  --bg-body:         #000000;
+  --bg-section:      rgba(0,0,0,0.88);
+  --bg-section-deep: rgba(0,0,0,0.92);
+  --text-primary:    #ffffff;
+  --text-muted:      #8e8e93;
+  --text-dim:        #48484a;
+  --text-darker:     #3a3a3c;
+  --text-darkest:    #2c2c2e;
+  --border:          #1d1d1f;
+  --wmark:           rgba(255,255,255,0.028);
+  --wmark-strong:    rgba(255,255,255,0.055);
+  --nav-bg:          rgba(0,0,0,0.80);
+  --nav-border:      rgba(255,255,255,0.06);
+  --proj-line:       #ffffff;
+  --cta-bg:          #ffffff;
+  --cta-color:       #000000;
+  --cta-hover:       #e5e5ea;
+  --radial-glow:     rgba(255,255,255,0.025);
+  --scrollbar-track: #000;
+  --scrollbar-thumb: #2c2c2e;
+
+  /* Admin panel */
+  --admin-bg:           #0a0a0a;
+  --admin-card:         #111111;
+  --admin-border:       #222222;
+  --admin-border-soft:  #1a1a1a;
+  --admin-input-bg:     #1c1c1e;
+  --admin-input-border: #2c2c2e;
+  --admin-input-focus:  #555555;
+  --admin-text:         #f5f5f7;
+  --admin-text-dim:     #6e6e73;
+  --admin-text-dimmer:  #3a3a3c;
+  --admin-hover:        #c7c7c7;
+  --admin-active-bg:    #1c1c1e;
+}
+
+[data-theme="light"] {
+  --bg-body:         #f5f5f7;
+  --bg-section:      rgba(245,245,247,0.93);
+  --bg-section-deep: rgba(240,240,242,0.96);
+  --text-primary:    #1d1d1f;
+  --text-muted:      #6e6e73;
+  --text-dim:        #86868b;
+  --text-darker:     #515154;
+  --text-darkest:    #6e6e73;
+  --border:          #d2d2d7;
+  --wmark:           rgba(0,0,0,0.04);
+  --wmark-strong:    rgba(0,0,0,0.07);
+  --nav-bg:          rgba(245,245,247,0.85);
+  --nav-border:      rgba(0,0,0,0.08);
+  --proj-line:       #1d1d1f;
+  --cta-bg:          #1d1d1f;
+  --cta-color:       #ffffff;
+  --cta-hover:       #3a3a3c;
+  --radial-glow:     rgba(0,0,0,0.015);
+  --scrollbar-track: #f5f5f7;
+  --scrollbar-thumb: #c7c7cc;
+
+  /* Admin panel */
+  --admin-bg:           #f5f5f7;
+  --admin-card:         #ffffff;
+  --admin-border:       #d8d8dc;
+  --admin-border-soft:  #e2e2e5;
+  --admin-input-bg:     #ffffff;
+  --admin-input-border: #d2d2d7;
+  --admin-input-focus:  #86868b;
+  --admin-text:         #1d1d1f;
+  --admin-text-dim:     #6e6e73;
+  --admin-text-dimmer:  #86868b;
+  --admin-hover:        #424245;
+  --admin-active-bg:    #ececee;
+}
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+  html::-webkit-scrollbar { width: 3px; }
+  html::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  html::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 2px; }
+
+  body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection { background: var(--text-primary); color: var(--bg-body); }
+}
+
+/* ─── Marquee animasyonları ─── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-r {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@layer utilities {
+  .font-syne { font-family: 'Syne', sans-serif; }
+
+  .marquee-fwd { animation: marquee   28s linear infinite; }
+  .marquee-rev { animation: marquee-r 24s linear infinite; }
+
+  /* Proje hover glow — theme-aware */
+  .project-item { transition: color 0.3s; }
+  .project-item:hover .proj-title {
+    color: var(--text-primary);
+    text-shadow: 0 0 60px rgba(128,128,128,0.22);
+  }
+  .project-item:hover .proj-line { opacity: 1; }
+  .project-item .proj-line { opacity: 0.15; transition: opacity 0.3s; }
+
+  /* Apple separator */
+  .sep   { border-top:    1px solid var(--border); }
+  .sep-b { border-bottom: 1px solid var(--border); }
+
+  /* Cursor hints */
+  .cursor-grab-custom { cursor: grab; }
+  .cursor-grab-custom:active { cursor: grabbing; }
+}
